@@ -49,5 +49,24 @@ namespace MonkeysCrossingRiverTests
 
             Assert.IsFalse(rope.AddMonkey());
         }
+
+        [TestMethod]
+        public void TestMoveMonkeys_AfterAddingMonkeys_ShouldWork()
+        {
+            var currentMonkeyCount = 0;
+            var rope = new Rope();
+            rope.AddMonkey();
+            currentMonkeyCount = rope.MoveMonkeys();
+            Assert.AreEqual(1, currentMonkeyCount, "Should be 1 monkey in the rope");
+
+            rope.AddMonkey();
+            currentMonkeyCount = rope.MoveMonkeys();
+            Assert.AreEqual(2, currentMonkeyCount, "Should be 2 monkey in the rope");
+
+            rope.AddMonkey();
+            Assert.AreEqual(3, rope.Count, "Should be 3 monkey in the rope");
+            currentMonkeyCount = rope.MoveMonkeys();
+            Assert.AreEqual(2, currentMonkeyCount, "Should be 2 monkey in the rope");
+        }
     }
 }

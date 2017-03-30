@@ -11,6 +11,11 @@ namespace MonkeysCrossingRiverProject.lib
         private int count;
         private bool[] positions = new bool[3];
 
+        public int Count
+        {
+            get { return count; }
+        }
+
         /// <summary>
         /// Check if there is a space where a monkey can
         /// be added. It will check only first space in the array
@@ -49,9 +54,20 @@ namespace MonkeysCrossingRiverProject.lib
         /// Move all existing monkeys one position forward.
         /// Keeps internal count up to date
         /// </summary>
-        public void MoveMonkeys()
+        public int MoveMonkeys()
         {
+            count = 0;
+            for (int i = positions.Count() - 1; i > 0; i--)
+            {
+                positions[i] = positions[i - 1];
+                positions[i - 1] = false;
+                if (positions[i])
+                {
+                    count++;
+                }
+            }
 
+            return count;
         }
     }
 }
