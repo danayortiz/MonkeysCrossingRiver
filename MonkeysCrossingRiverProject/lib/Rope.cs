@@ -8,12 +8,12 @@ namespace MonkeysCrossingRiverProject.lib
 {
     public class Rope
     {
-        private int count;
-        private bool[] positions = new bool[3];
+        private int _count;
+        private bool[] _positions = new bool[3];
 
         public int Count
         {
-            get { return count; }
+            get { return _count; }
         }
 
         /// <summary>
@@ -23,7 +23,7 @@ namespace MonkeysCrossingRiverProject.lib
         /// <returns>Returns TRUE if there is a space</returns>
         public bool IsSpaceAvailable()
         {
-            return !this.positions[0];
+            return !_positions[0];
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MonkeysCrossingRiverProject.lib
         /// <returns>Returns TRUE is there are not monkeys in the rope</returns>
         public bool IsFree()
         {
-            return count == 0;
+            return _count == 0;
         }
 
         /// <summary>
@@ -40,13 +40,13 @@ namespace MonkeysCrossingRiverProject.lib
         /// </summary>
         public bool AddMonkey()
         {
-            if (!this.IsSpaceAvailable())
+            if (!IsSpaceAvailable())
             {
                 return false;
             }
 
-            positions[0] = true;
-            count++;
+            _positions[0] = true;
+            _count++;
             return true;
         }
 
@@ -56,18 +56,18 @@ namespace MonkeysCrossingRiverProject.lib
         /// </summary>
         public int MoveMonkeys()
         {
-            count = 0;
-            for (int i = positions.Count() - 1; i > 0; i--)
+            _count = 0;
+            for (int i = _positions.Count() - 1; i > 0; i--)
             {
-                positions[i] = positions[i - 1];
-                positions[i - 1] = false;
-                if (positions[i])
+                _positions[i] = _positions[i - 1];
+                _positions[i - 1] = false;
+                if (_positions[i])
                 {
-                    count++;
+                    _count++;
                 }
             }
 
-            return count;
+            return _count;
         }
     }
 }
