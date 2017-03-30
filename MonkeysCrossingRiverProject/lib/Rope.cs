@@ -27,15 +27,22 @@ namespace MonkeysCrossingRiverProject.lib
         /// <returns>Returns TRUE is there are not monkeys in the rope</returns>
         public bool IsFree()
         {
-            return false;
+            return count == 0;
         }
 
         /// <summary>
         /// Adds a monkey to the rope in the initial position
         /// </summary>
-        public void AddMonkey()
+        public bool AddMonkey()
         {
+            if (!this.IsSpaceAvailable())
+            {
+                return false;
+            }
 
+            positions[0] = true;
+            count++;
+            return true;
         }
 
         /// <summary>
