@@ -8,14 +8,24 @@ namespace MonkeysCrossingRiverProject.lib
 {
     class MonkeyManager
     {
-        private int rightCount;
-        private int leftCount;
+        private int _rightCount;
+        private int _leftCount;
         protected enum Sides { Right, Left };
+
+        public int RightCount
+        {
+            get { return _rightCount; }
+        }
+
+        public int LeftCount
+        {
+            get { return _leftCount; }
+        }
 
         public MonkeyManager(int rightCount, int leftCount)
         {
-            this.rightCount = rightCount;
-            this.leftCount = leftCount;
+            this._rightCount = rightCount;
+            this._leftCount = leftCount;
         }
 
         /// <summary>
