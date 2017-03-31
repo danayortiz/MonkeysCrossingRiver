@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace MonkeysCrossingRiverProject.lib
 {
-    class MonkeyManager
+    public class MonkeyManager
     {
         private int _rightCount;
         private int _leftCount;
+        private int _maxPerRound;
+        private Rope _rope = new Rope();
         protected enum Sides { Right, Left };
 
         public int RightCount
@@ -22,10 +24,11 @@ namespace MonkeysCrossingRiverProject.lib
             get { return _leftCount; }
         }
 
-        public MonkeyManager(int rightCount, int leftCount)
+        public MonkeyManager(int rightCount, int leftCount, int maxPerRound = 3)
         {
             this._rightCount = rightCount;
             this._leftCount = leftCount;
+            this._maxPerRound = maxPerRound;
         }
 
         /// <summary>
@@ -36,13 +39,24 @@ namespace MonkeysCrossingRiverProject.lib
         {
             return Sides.Left;
         }
-
+        
+        protected Sides SwitchSides(Sides current)
+        {
+            if (current == Sides.Left && _rightCount > 0)
+            {
+                current = Sides.Right;
+            } else if (_leftCount > 0)
+            {
+                current = Sides.Left;
+            }
+            return current;
+        }
         /// <summary>
         /// Run all necessary iterations to move all monkeys
         /// from one side to another
         /// </summary>
         /// <returns>Returns number of iterations done</returns>
-        protected int Run()
+        public int Run()
         {
             return 0;
         }
