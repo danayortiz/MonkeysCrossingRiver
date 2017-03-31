@@ -66,6 +66,14 @@ namespace MonkeysCrossingRiverProject.lib
             var currentSide = PickASide();
             while (_rightCount > 0 || _leftCount > 0)
             {
+                if (_rightCount == 0)
+                {
+                    _maxPerRound = _leftCount;
+                }
+                if (_leftCount == 0)
+                {
+                    _maxPerRound = _rightCount;
+                }
                 iterations += DoRound(currentSide);
                 currentSide = SwitchSides(currentSide);
             }
