@@ -21,13 +21,16 @@ namespace MonkeysCrossingRiverProject.lib
 
         public void Start(int rightCount, int leftCount)
         {
+            Console.Clear();
+
+            Console.WriteLine("Monkeys Crossing River");
             Console.WriteLine("Program started");
             Console.WriteLine(" ");
 
             Console.CursorLeft = 3;
-            Console.Write("{0} [{1}]", _waitingMonkey, leftCount);
+            Console.Write("{0} [{1}]", _waitingMonkey, this.format(leftCount));
             Console.Write("   ┬──────┼─────┼─────┼─────┬  ");
-            Console.Write("{0} [{1}]", _waitingMonkey, rightCount);
+            Console.Write("{0} [{1}]", _waitingMonkey, this.format(rightCount));
 
             this.Wait();
         }
@@ -35,6 +38,14 @@ namespace MonkeysCrossingRiverProject.lib
         public void Wait()
         {
             System.Threading.Thread.Sleep(1000);
+        }
+
+        // TODO: Support 3 and more digit numbers
+        private string format(int number)
+        {
+            var str = number.ToString();
+
+            return (str.Length < 2 ? "0" : "") + str;
         }
 
         public void Write(MonkeyManager.Sides side, int count, bool[] ropePositions)
@@ -45,11 +56,11 @@ namespace MonkeysCrossingRiverProject.lib
             }
             else
             {
-                Console.CursorLeft = 44;
+                Console.CursorLeft = 45;
             }
 
             Console.CursorTop = 3;
-            Console.Write(count);
+            Console.Write(this.format(count));
 
             Console.CursorTop = 2;
 
@@ -57,11 +68,11 @@ namespace MonkeysCrossingRiverProject.lib
             {
                 if (side == MonkeyManager.Sides.Left)
                 {
-                    Console.CursorLeft = 18 + (i * 6);
+                    Console.CursorLeft = 19 + (i * 6);
                 } 
                 else
                 {
-                    Console.CursorLeft = 30 - (i * 6);
+                    Console.CursorLeft = 31 - (i * 6);
                 }
                 
                 if (ropePositions[i])
