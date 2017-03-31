@@ -37,7 +37,7 @@ namespace MonkeysCrossingRiverProject.lib
         /// <returns>Returns a side to start with</returns>
         protected Sides PickASide()
         {
-            return Sides.Left;
+            return _leftCount > _rightCount ? Sides.Left : Sides.Right;
         }
         
         protected Sides SwitchSides(Sides current)
