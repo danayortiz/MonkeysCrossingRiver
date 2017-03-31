@@ -12,8 +12,9 @@ namespace MonkeysCrossingRiverProject
         {
             Console.WriteLine("Monkeys Crossing River");
 
-            Console.CursorLeft = 20;
-            Console.Write('M');
+            var manager = new lib.MonkeyManager(4, 9, 3);
+
+            Console.WriteLine(manager.Run());
 
             Console.ReadKey();
         }

@@ -58,7 +58,46 @@ namespace MonkeysCrossingRiverProject.lib
         /// <returns>Returns number of iterations done</returns>
         public int Run()
         {
-            return 0;
+            var iterations = 0;
+            var currentSide = PickASide();
+            while (_rightCount > 0 || _leftCount > 0)
+            {
+                iterations += DoRound(currentSide);
+                currentSide = SwitchSides(currentSide);
+            }
+
+            return iterations;
+        }
+
+        /// <summary>
+        ///Take the allowed amount of monkeys to the other side.
+        /// </summary>
+        /// <param name="count">Number of total monkeys on one side waiting to cross.</param>
+        /// <returns>Returns number of iterations.</returns>
+        private int DoRound(Sides side)
+        {
+            var count = side == Sides.Left ? _leftCount : _rightCount;
+            var i = 0;
+            do
+            {
+                _rope.MoveMonkeys();
+                if (count > 0 && i < _maxPerRound)
+                {
+                    _rope.AddMonkey();
+                    count--;
+                }
+                i++;
+            } while (!_rope.IsEmpty());
+
+            if (side == Sides.Left)
+            {
+                _leftCount = count;
+            }
+            else
+            {
+                _rightCount = count;
+            }
+            return i;
         }
     }
 }
