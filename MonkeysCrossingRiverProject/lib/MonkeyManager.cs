@@ -11,8 +11,9 @@ namespace MonkeysCrossingRiverProject.lib
         private int _rightCount;
         private int _leftCount;
         private int _maxPerRound;
+        private IOutput _output;
         private Rope _rope = new Rope();
-        protected enum Sides { Right, Left };
+        public enum Sides { Right, Left };
 
         public int RightCount
         {
@@ -24,11 +25,12 @@ namespace MonkeysCrossingRiverProject.lib
             get { return _leftCount; }
         }
 
-        public MonkeyManager(int rightCount, int leftCount, int maxPerRound = 3)
+        public MonkeyManager(IOutput output, int rightCount, int leftCount, int maxPerRound = 3)
         {
             this._rightCount = rightCount;
             this._leftCount = leftCount;
             this._maxPerRound = maxPerRound;
+            this._output = output;
         }
 
         /// <summary>
@@ -58,6 +60,8 @@ namespace MonkeysCrossingRiverProject.lib
         /// <returns>Returns number of iterations done</returns>
         public int Run()
         {
+            _output.Start(_rightCount, _leftCount);
+
             var iterations = 0;
             var currentSide = PickASide();
             while (_rightCount > 0 || _leftCount > 0)
@@ -65,6 +69,8 @@ namespace MonkeysCrossingRiverProject.lib
                 iterations += DoRound(currentSide);
                 currentSide = SwitchSides(currentSide);
             }
+
+            _output.Finish(iterations);
 
             return iterations;
         }
@@ -87,6 +93,8 @@ namespace MonkeysCrossingRiverProject.lib
                     count--;
                 }
                 i++;
+                _output.Write(side, count, _rope.Positions);
+                _output.Wait();
             } while (!_rope.IsEmpty());
 
             if (side == Sides.Left)

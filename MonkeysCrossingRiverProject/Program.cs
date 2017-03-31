@@ -12,9 +12,11 @@ namespace MonkeysCrossingRiverProject
         {
             Console.WriteLine("Monkeys Crossing River");
 
-            var manager = new lib.MonkeyManager(4, 9, 3);
+            var output = new lib.ConsoleOutput();
 
-            Console.WriteLine(manager.Run());
+            var manager = new lib.MonkeyManager(output, 3, 4, 3);
+
+            manager.Run();
 
             Console.ReadKey();
         }

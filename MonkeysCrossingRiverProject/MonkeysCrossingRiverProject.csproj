@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="lib\ConsoleOutput.cs" />
+    <Compile Include="lib\IOutput.cs" />
     <Compile Include="lib\MonkeyManager.cs" />
     <Compile Include="lib\Rope.cs" />
     <Compile Include="Program.cs" />
