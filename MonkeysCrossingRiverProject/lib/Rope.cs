@@ -9,11 +9,22 @@ namespace MonkeysCrossingRiverProject.lib
     public class Rope
     {
         private int _count;
-        private bool[] _positions = new bool[3];
+        private int _capacity = 3;
+        private bool[] _positions;
 
         public int Count
         {
             get { return _count; }
+        }
+
+        public int Capacity
+        {
+            get { return _capacity; }
+        }
+
+        public Rope()
+        {
+            _positions = new bool[_capacity];
         }
 
         /// <summary>
@@ -30,7 +41,7 @@ namespace MonkeysCrossingRiverProject.lib
         /// Check if the rope is empty.
         /// </summary>
         /// <returns>Returns TRUE is there are not monkeys in the rope</returns>
-        public bool IsFree()
+        public bool IsEmpty()
         {
             return _count == 0;
         }
@@ -56,6 +67,11 @@ namespace MonkeysCrossingRiverProject.lib
         /// </summary>
         public int MoveMonkeys()
         {
+            if (IsEmpty())
+            {
+                return _count;
+            }
+
             _count = 0;
             for (int i = _positions.Count() - 1; i > 0; i--)
             {
