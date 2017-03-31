@@ -22,6 +22,11 @@ namespace MonkeysCrossingRiverProject.lib
             get { return _capacity; }
         }
 
+        public bool[] Positions
+        {
+            get { return _positions; }
+        }
+
         public Rope()
         {
             _positions = new bool[_capacity];
