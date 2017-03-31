@@ -13,8 +13,13 @@ namespace MonkeysCrossingRiverProject
             Console.WriteLine("Monkeys Crossing River");
 
             var output = new lib.ConsoleOutput();
+            var leftCount = 0;
+            var rightCount = 0;
 
-            var manager = new lib.MonkeyManager(output, 3, 4, 3);
+            Int32.TryParse(args[0], out leftCount);
+            Int32.TryParse(args[1], out rightCount);
+
+            var manager = new lib.MonkeyManager(output, rightCount, leftCount, 3);
 
             manager.Run();
 
