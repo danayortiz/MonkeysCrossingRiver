@@ -29,7 +29,7 @@ namespace MonkeysCrossingRiverTests
         {
             var rope = new Rope();
 
-            Assert.IsTrue(rope.IsFree());
+            Assert.IsTrue(rope.IsEmpty());
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace MonkeysCrossingRiverTests
             var rope = new Rope();
             rope.AddMonkey();
 
-            Assert.IsFalse(rope.IsFree());
+            Assert.IsFalse(rope.IsEmpty());
         }
 
         [TestMethod]
